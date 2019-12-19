@@ -1,0 +1,21 @@
+#Creating folder
+
+dir.create("new_folder")
+
+#Moving files
+
+install.packages("filesstrings")
+library("filesstrings")
+
+file.move(paste0("/Users/itdpbrasil/Desktop/Mobilidados 2019/hexagonos/hexagonos_dados_muni/shp/hex_", munis_df$name_muni,"_09.shp"), "/Users/itdpbrasil/Desktop/Mobilidados 2019/hexagonos/hexagonos_dados_muni/rmsp")
+file.move(paste0("/Users/itdpbrasil/Desktop/Mobilidados 2019/hexagonos/hexagonos_dados_muni/shp/hex_", munis_df$name_muni,"_09.prj"), "/Users/itdpbrasil/Desktop/Mobilidados 2019/hexagonos/hexagonos_dados_muni/rmsp")
+file.move(paste0("/Users/itdpbrasil/Desktop/Mobilidados 2019/hexagonos/hexagonos_dados_muni/shp/hex_", munis_df$name_muni,"_09.dbf"), "/Users/itdpbrasil/Desktop/Mobilidados 2019/hexagonos/hexagonos_dados_muni/rmsp")
+file.move(paste0("/Users/itdpbrasil/Desktop/Mobilidados 2019/hexagonos/hexagonos_dados_muni/shp/hex_", munis_df$name_muni,"_09.shx"), "/Users/itdpbrasil/Desktop/Mobilidados 2019/hexagonos/hexagonos_dados_muni/rmsp")
+
+#Creating txt files
+
+file.create("new_text_file.txt")
+
+#Create 100 txt files
+
+sapply(paste0("file", 1:100, ".txt"), file.create)
