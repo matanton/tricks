@@ -9,21 +9,27 @@ org_conferencia <- function(i){
 #abrir arquivo de taxa
 taxa <- read.xlsx(paste0("./taxa mortalidade/rm_", i , "_taxa_mortalidade.xlsx"))
 
-#selecionar RMs (ou capitais)
-taxa_rm <- taxa[taxa$RM %in% c("Região Metropolitana de Belém", "Região Metropolitana de Belo Horizonte",
+#selecionar capitais
+taxa <- taxa[taxa$CAPITAL == "Sim", ]
+
+#selecionar RMs
+taxa <- taxa[taxa$RM %in% c("Região Metropolitana de Belém", "Região Metropolitana de Belo Horizonte",
                                          "Região Metropolitana de Curitiba", "Região Integrada de Desenvolvimento do Distrito Federal e Entorno",
                                          "Região Metropolitana de Fortaleza", "Região Metropolitana de Porto Alegre", "Região Metropolitana de Recife",
                                          "Região Metropolitana do Rio de Janeiro", "Região Metropolitana de Salvador", "Região Metropolitana de São Paulo"), ]
 
 
-#reordenar linhas para facilitar conferencia
-taxa_rm_ord <- taxa_rm[c(1,6,9,5,2,10,3,7,4,8),]
+#reordenar linhas para facilitar conferencia RM
+taxa <- taxa[c(1,6,9,5,2,10,3,7,4,8),]
+
+#reordenar linhas para facilitar conferencia capitais
+taxa_rm_ord <- taxa_rm[order(taxa_rm$MUN),]
 
 #transpor wide em long
-total_long <- gather(taxa_rm_ord, year, taxa, tx_mort_2000:tx_mort_2018, factor_key = TRUE) 
+total_long <- gather(taxa, year, taxa, tx_mort_2000:tx_mort_2018, factor_key = TRUE) 
 
 #salvar
-write.xlsx(total_long, paste0("./taxa mortalidade/conferencia_rm_", i, "_dados_brutos.xlsx"))
+write.xlsx(total_long, paste0("./taxa mortalidade/conferencia_", i, ".xlsx"))
 
 }
 
