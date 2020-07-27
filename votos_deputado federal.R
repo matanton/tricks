@@ -48,7 +48,6 @@ votos_muni_2018 <- votos_deputados_2018 %>%
     summarise(VOTOS = QTDE_VOTOS) %>%
                 arrange(-VOTOS)
 
-#Falta: Achar um jeito de selecionar somente os eleitos na tabela de votos
 #Analisar em quais municipios os eleitos foram mais votados
 #Tentar colocar isso no mapa
 #Bonus: Fazer % dos votos de cada candidato considerando os votos validos por municipio naquele ano
